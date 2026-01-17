@@ -1,0 +1,67 @@
+* {
+    margin: auto;
+    font-family: "Zalando Sans Expanded", sans-serif;
+    color: black;
+    font-weight: 200;
+}
+
+.navbar-container {
+    width:100%;
+}
+
+.navbar-container,
+.nav-links * {
+    display: flex;
+    text-decoration: none;
+    color: white;
+}
+
+.nav-links {
+    margin-top: 9vh;
+    margin-left: 40vh;
+    border-radius: 40px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(0, 0, 0, 0.424);
+    box-shadow: 2px 2px rgba(0, 0, 0, 0.47);
+    background-color: rgb(196, 35, 35);
+}
+
+.nav-links ul * {
+    margin-right: 4vh;
+}
+
+.nav-links a {
+    font-size: 1.3rem;
+    position: relative;
+    text-decoration: none;
+    padding:3vh;
+    border-radius: 40px;
+}
+
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 2.6vh;
+    width: 0;
+    height: 2px;
+    background-color: white;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-links a:hover::after {
+    width: 60%;
+}
+
+.logo {
+    margin-left: 9vh;
+    margin-top: 3vh;
+    margin-right: 7vh;
+    width: 12vh;
+}
+
+.logo img {
+    width: 19vh;
+}
