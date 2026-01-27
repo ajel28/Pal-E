@@ -1,5 +1,3 @@
-
-/* Home */
 .home-photos{
     margin-left: 6vw;
     margin-right: 5vw;
@@ -30,3 +28,20 @@
     height:38vh;
 }
 
+.intro-text{
+    margin-top: 3vh;
+    margin-left: 11vh;
+    margin-right: 11vh;
+}
+
+.intro-text h1{
+    font-weight: 700;
+    color: rgb(196, 35, 35);
+    margin-bottom: 2vh;
+    margin-top: 2vh;
+}
+
+.intro-text h3{
+    text-indent: 4vw;
+    line-height: 2.5rem;
+}

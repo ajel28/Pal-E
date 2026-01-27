@@ -65,3 +65,25 @@
 .logo img {
     width: 19vh;
 }
+
+footer{
+    display: flex;
+    background-color: rgb(196, 35, 35);
+    height: 10vh;
+    margin-top: 5vh;
+}
+
+footer p, i{
+    color: white;
+    font-weight: 600;
+    font-size: 1.4rem;
+}
+
+.rights-reserved{
+    margin-left: 3vw;
+}
+
+.social-media{
+    margin-left: 40vw;
+    margin-right: 4vw;
+}
