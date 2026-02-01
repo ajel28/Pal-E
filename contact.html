@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,16 +11,17 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Zalando+Sans+Expanded:ital,wght@0,200..900;1,200..900&display=swap"
         rel="stylesheet">
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 
-    <title>Contact</title>
+<title>Contact</title>
 </head>
+
 <body>
-     <header>
+    <header>
         <div class="navbar-container">
             <div class="logo">
-                    <img src="img/PAL-Logo.png" alt="">
+                <img src="img/PAL-Logo.png" alt="">
             </div>
             <nav class="nav-links">
                 <ul>
@@ -30,35 +32,60 @@
                 </ul>
             </nav>
         </div>
-    </header> 
+    </header>
 
     <main>
-    <div class="contact-map">
-        <div class="location-textbox1"> 
-            <h1>Our Location</h1>
-            <p>550 Gorge Road<br>
-            Cliffside Park, New Jersey 07010<br>
-            <br>
+        <div class="contact-map">
+            <div class="location-textbox1">
+                <h1>Our Location</h1>
+                <p>550 Gorge Road<br>
+                    Cliffside Park, New Jersey 07010<br>
+                    <br>
+            </div>
+            <div class="mapouter">
+                <div class="gmap_canvas"><iframe class="gmap_iframe" width="100%" frameborder="0" scrolling="no"
+                        marginheight="0" marginwidth="0"
+                        src="https://maps.google.com/maps?width=715&amp;height=392&amp;hl=en&amp;q=550 gorge road&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe><a
+                        href="https://embed-googlemap.com">embed google map</a></div>
+                <style>
+                    .mapouter {
+                        position: relative;
+                        text-align: right;
+                        width: 100%;
+                        height: 392px;
+                    }
+
+                    .gmap_canvas {
+                        overflow: hidden;
+                        background: none !important;
+                        width: 100%;
+                        height: 392px;
+                    }
+
+                    .gmap_iframe {
+                        height: 392px !important;
+                    }
+                </style>
+            </div>
+            <div class="google-maps-images">
+                <img class="maps-img" src="img/PAL-Location-Map.png" alt="">
+                <img class="maps-img2" src="img/PAL-Location-Map2.png" alt="">
+            </div>
+
         </div>
-        <div class="google-maps-images">
-            <img class= "maps-img" src="img/PAL-Location-Map.png" alt="">
-            <img class="maps-img2" src="img/PAL-Location-Map2.png" alt="">
+        <div class="socials">
+            <div class="info-textbox3">
+                <h1>Follow Us</h1>
+                <p>Instagram: @cliffsideparkpal<br>
+                    Facebook: @cliffsideparkpal<br>
+            </div>
+            <img class="socials-img" src="img/PAL-Socials-Icons.png" alt="">
         </div>
-        
-    </div>
-    <div class="socials">
-        <div class="info-textbox3">
-            <h1>Follow Us</h1>
-            <p>Instagram: @cliffsideparkpal<br>
-            Facebook: @cliffsideparkpal<br>
-        </div>
-        <img class="socials-img" src="img/PAL-Socials-Icons.png" alt="">
-    </div>
-    <div class="contact-info">
-        <div class="info-textbox2">
-            <h1>Contact Us</h1>
-            <p>Phone: 201-945-3456<br>
-            Email: cliffsideparkpal@gmail.com</p>
+        <div class="contact-info">
+            <div class="info-textbox2">
+                <h1>Contact Us</h1>
+                <p>Phone: 201-945-3456<br>
+                    Email: cliffsideparkpal@gmail.com</p>
     </main>
 
     <footer>
@@ -71,4 +98,5 @@
     </footer>
 
 </body>
+
 </html>
