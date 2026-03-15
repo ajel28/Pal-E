@@ -1,0 +1,85 @@
+*{
+    text-align: center;
+}
+
+h1{
+    font-weight: 700;
+    color: rgb(196, 35, 35);
+    font-size: 3.5rem;
+    margin-top: 5vh;
+}
+
+.hours-table, .special-cases-table {
+  width:80vw;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.08);
+  font-family: 'DM Sans', sans-serif;
+  margin-top: 3vh;
+}
+ 
+.hours-table thead tr, .special-cases-table thead tr {
+  background: #000000;
+}
+ 
+.hours-table th, .special-cases-table th {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #aaa;
+  padding: 16px 28px;
+  text-align: left;
+}
+ 
+.hours-table th:last-child, .special-cases-table th:last-child {
+  text-align: right;
+}
+ 
+.hours-table tbody tr, .special-cases-table tbody tr.{
+  border-bottom: 1px solid #f0ece4;
+  transition: background 0.15s;
+}
+ 
+.hours-table tbody tr:last-child, .special-cases-table tbody tr:last-child {
+  border-bottom: none;
+}
+ 
+.hours-table tbody tr:hover, .special-cases-table tbody tr:hover {
+  background: #faf8f4;
+}
+ 
+.hours-table td, .special-cases-table td {
+  padding: 15px 28px;
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: #2a2a2a;
+}
+ 
+.hours-table td:first-child, .special-cases-table td:first-child {
+  font-weight: 500;
+  color: #1a1a1a;
+}
+ 
+.hours-table td:last-child {
+  text-align: right;
+  color: #2d6a4f;
+  font-weight: 500;
+}
+
+.hours-table td:last-child:has(+ *) {
+  color: inherit;
+}
+ 
+.hours-table tbody tr:nth-child(n+6) td:last-child, .special-case-closed td:last-child {
+  color: #c0392b !important;
+  font-style: italic;
+}
+
+h2{
+    margin-top: 5vh;
+    font-weight: 600;
+}
