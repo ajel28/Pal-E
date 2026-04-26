@@ -39,7 +39,7 @@ h1{
   text-align: right;
 }
  
-.hours-table tbody tr, .special-cases-table tbody tr.{
+.hours-table tbody tr, .special-cases-table tbody tr{
   border-bottom: 1px solid #f0ece4;
   transition: background 0.15s;
 }
