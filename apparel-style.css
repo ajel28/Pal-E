@@ -80,6 +80,7 @@ button:hover{
 .apparel-row {
     display: flex;
     align-items: stretch;
+    margin-top:2%;
 }
 
 .apparel-item {
