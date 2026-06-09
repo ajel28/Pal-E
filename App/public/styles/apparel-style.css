@@ -1,0 +1,121 @@
+h1{
+    font-weight: 700;
+    color: rgb(196, 35, 35);
+    font-size: 3.5rem;
+    margin-top: 5vh;
+    text-align: center;
+}
+
+.apparel-desc h2{
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+.apparel-table thead tr {
+  background: #000000;
+}
+
+.apparel-table th {
+  font-size: 0.5rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #aaa;
+  padding: 16px 28px;
+  text-align: left;
+}
+
+.apparel-table th:last-child {
+  text-align: right;
+}
+
+.apparel-table tbody tr {
+  border-bottom: 1px solid #f0ece4;
+  transition: background 0.15s;
+}
+
+.apparel-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.apparel-table tbody tr:hover {
+  background: #faf8f4;
+}
+
+.apparel-table td {
+  padding: 15px 28px;
+  font-size: 0.65rem;
+  font-weight: 400;
+  color: #2a2a2a;
+}
+
+.apparel-table td:first-child {
+  font-weight: 500;
+  color: #1a1a1a;
+}
+
+.apparel-table td:last-child {
+  text-align: right;
+  font-weight: 500;
+}
+
+button{
+    background-color: rgb(196, 35, 35);
+    color: white;
+    border:0;
+    padding-left:38%;
+    padding-right:38%;
+    padding-top:4%;
+    padding-bottom:4%;
+    border-radius:40px;
+    font-size: 1.5rem;
+}
+
+button:hover{
+    cursor: pointer;
+    background-color: rgb(255, 143, 143);
+    transition: background-color 0.4s;
+}
+
+.apparel-row {
+    display: flex;
+    align-items: stretch;
+    margin-top:2%;
+}
+
+.apparel-item {
+    display: flex;
+    margin-top: 2%;
+    width: 43%;
+    align-items: center; 
+}
+
+.apparel-item img {
+    margin-right: 0;
+    width: 26%;
+    flex-shrink: 0;
+    object-fit: contain;
+    align-self: center;
+}
+
+.apparel-desc {
+    margin-left: 3%;
+    text-align: center;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.apparel-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 32px rgba(0, 0, 0, 0.08);
+    font-family: 'DM Sans', sans-serif;
+    margin-top: 3vh;
+}
