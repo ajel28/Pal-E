@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Police Athletic League</title>
+    <link rel="stylesheet" href="general-style.css">
+    <link rel="stylesheet" href="calendar-style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Zalando+Sans+Expanded:ital,wght@0,200..900;1,200..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="navbar-container">
+            <div class="logo">
+                <img src="img/PAL-Logo.png" alt="">
+            </div>
+            <nav class="nav-links">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/calendar">Calendar</a></li>
+                    <li><a href="/hours">Hours</a></li>
+                    <li><a href="/apparel">Apparel</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/location">Location</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <h1>PAL Events Calendar</h1>
+
+        <div class="calendar-container">
+            <div class="calendar-header">
+                <button id="prevMonth" class="nav-btn">&larr;</button>
+                <h2 id="monthYear"></h2>
+                <button id="nextMonth" class="nav-btn">&rarr;</button>
+            </div>
+
+            <div class="calendar-grid">
+                <div class="day-label">Sun</div>
+                <div class="day-label">Mon</div>
+                <div class="day-label">Tue</div>
+                <div class="day-label">Wed</div>
+                <div class="day-label">Thu</div>
+                <div class="day-label">Fri</div>
+                <div class="day-label">Sat</div>
+            </div>
+
+            <div id="calendarDays" class="calendar-grid"></div>
+        </div>
+
+        <div id="eventPanel" class="event-panel hidden">
+            <h3 id="eventDateTitle"></h3>
+            <ul id="eventList"></ul>
+        </div>
+    </main>
+
+    <footer>
+        <p class="rights-reserved">Police Athletic League&trade; | All Rights Reserved</p>
+        <p class="social-media">
+            <a href="https://www.instagram.com/cliffsideparkpal/"><i class="fa-brands fa-instagram"></i></a>
+            |
+            <a href="https://www.facebook.com/cliffsideparkpal/"><i class="fa-brands fa-facebook"></i></i></a>
+        </p>
+    </footer>
+
+    <script>
+        const events = {
+            '6-2': [{ title: 'Basketball Practice', time: '3:00 PM' }],
+            '6-5': [{ title: 'Baseball Game vs Fort Lee', time: '4:30 PM' }],
+            '6-7': [{ title: 'PAL Community Cookout', time: '12:00 PM' }],
+            '6-9': [{ title: 'Soccer Practice', time: '3:00 PM' }],
+            '6-12': [{ title: 'Swim Team Tryouts', time: '2:00 PM' }],
+            '6-14': [{ title: 'PAL Awards Ceremony', time: '6:00 PM' }],
+            '6-16': [{ title: 'Basketball Practice', time: '3:00 PM' }],
+            '6-19': [{ title: 'Baseball Game vs Teaneck', time: '4:00 PM' }],
+            '6-21': [{ title: 'Summer Kickoff Party', time: '11:00 AM' }],
+            '6-23': [{ title: 'Soccer Practice', time: '3:00 PM' }],
+            '6-26': [{ title: 'Softball Game', time: '4:30 PM' }],
+            '6-28': [{ title: 'PAL Family Fun Day', time: '10:00 AM' }],
+            '6-30': [{ title: 'End of Month Meetup', time: '5:00 PM' }],
+            '7-4': [{ title: 'Closed – Independence Day', time: '' }],
+            '7-8': [{ title: 'Basketball Practice', time: '3:00 PM' }],
+            '7-10': [{ title: 'Swim Meet', time: '2:00 PM' }],
+            '7-15': [{ title: 'Baseball Game vs Ridgefield', time: '4:00 PM' }],
+            '7-19': [{ title: 'PAL Movie Night', time: '7:00 PM' }],
+            '7-22': [{ title: 'Soccer Practice', time: '3:00 PM' }],
+            '7-26': [{ title: 'Beach Trip', time: '9:00 AM' }],
+        };
+
+        let currentDate = new Date();
+        let currentMonth = currentDate.getMonth();
+        let currentYear = currentDate.getFullYear();
+
+        function renderCalendar() {
+            const monthYear = document.getElementById('monthYear');
+            const calendarDays = document.getElementById('calendarDays');
+            const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+                'July', 'August', 'September', 'October', 'November', 'December'
+            ];
+
+            monthYear.textContent = monthNames[currentMonth] + ' ' + currentYear;
+
+            const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+            const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+
+            calendarDays.innerHTML = '';
+
+            for (let i = 0; i < firstDay; i++) {
+                const empty = document.createElement('div');
+                empty.className = 'calendar-day empty';
+                calendarDays.appendChild(empty);
+            }
+
+            for (let d = 1; d <= daysInMonth; d++) {
+                const dayDiv = document.createElement('div');
+                dayDiv.className = 'calendar-day';
+                dayDiv.textContent = d;
+
+                const key = (currentMonth + 1) + '-' + d;
+                if (events[key]) {
+                    dayDiv.classList.add('has-event');
+                    dayDiv.addEventListener('click', () => showEvents(key, d));
+                }
+
+                const today = new Date();
+                if (d === today.getDate() && currentMonth === today.getMonth() && currentYear === today.getFullYear()) {
+                    dayDiv.classList.add('today');
+                }
+
+                calendarDays.appendChild(dayDiv);
+            }
+        }
+
+        function showEvents(key, day) {
+            const panel = document.getElementById('eventPanel');
+            const title = document.getElementById('eventDateTitle');
+            const list = document.getElementById('eventList');
+
+            const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+                'July', 'August', 'September', 'October', 'November', 'December'
+            ];
+
+            title.textContent = monthNames[currentMonth] + ' ' + day + ', ' + currentYear;
+            list.innerHTML = '';
+
+            const dayEvents = events[key] || [];
+            if (dayEvents.length === 0) {
+                const li = document.createElement('li');
+                li.textContent = 'No events scheduled.';
+                list.appendChild(li);
+            } else {
+                dayEvents.forEach(ev => {
+                    const li = document.createElement('li');
+                    const timeStr = ev.time ? ' &mdash; ' + ev.time : '';
+                    li.innerHTML = '<span class="event-title">' + ev.title + '</span>' + timeStr;
+                    list.appendChild(li);
+                });
+            }
+
+            panel.classList.remove('hidden');
+        }
+
+        document.getElementById('prevMonth').addEventListener('click', () => {
+            currentMonth--;
+            if (currentMonth < 0) { currentMonth = 11;
+                currentYear--; }
+            document.getElementById('eventPanel').classList.add('hidden');
+            renderCalendar();
+        });
+
+        document.getElementById('nextMonth').addEventListener('click', () => {
+            currentMonth++;
+            if (currentMonth > 11) { currentMonth = 0;
+                currentYear++; }
+            document.getElementById('eventPanel').classList.add('hidden');
+            renderCalendar();
+        });
+
+        renderCalendar();
+    </script>
+
+</body>
+
+</html>

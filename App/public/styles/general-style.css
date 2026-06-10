@@ -17,8 +17,10 @@
 }
 
 .nav-links {
+    flex: 1;
     margin-top: 9vh;
-    margin-left: 14vh;
+    margin-left: 4vh;
+    margin-right: 4vh;
     border-radius: 40px;
     border-style: solid;
     border-width: 1px;
@@ -27,23 +29,27 @@
     background-color: rgb(196, 35, 35);
 }
 
-.nav-links ul * {
-    margin-right: 4vh;
+.nav-links ul {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    padding: 0;
 }
 
 .nav-links a {
-    font-size: 1.3rem;
+    font-size: 1.15rem;
     position: relative;
     text-decoration: none;
-    padding:3vh;
+    padding: 2vh 1.5vw;
     border-radius: 40px;
+    white-space: nowrap;
 }
 
 .nav-links a::after {
     content: "";
     position: absolute;
     left: 50%;
-    bottom: 2.6vh;
+    bottom: 0.8vh;
     width: 0;
     height: 2px;
     background-color: white;

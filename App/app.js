@@ -14,6 +14,7 @@ const views = path.join(__dirname, 'views');
 app.get('/', (req, res) => res.sendFile(path.join(views, 'home.html')));
 app.get('/apparel', (req, res) => res.sendFile(path.join(views, 'apparel.html')));
 app.get('/contact', (req, res) => res.sendFile(path.join(views, 'contact.html')));
+app.get('/calendar', (req, res) => res.sendFile(path.join(views, 'calendar.html')));
 app.get('/hours', (req, res) => res.sendFile(path.join(views, 'hours.html')));
 app.get('/location', (req, res) => res.sendFile(path.join(views, 'location.html')));
 app.get('/status', (req, res) => {
