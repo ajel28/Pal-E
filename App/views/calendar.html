@@ -62,6 +62,15 @@
             <h3 id="eventDateTitle"></h3>
             <ul id="eventList"></ul>
         </div>
+
+        <div id="routineForm" class="routine-section hidden">
+            <h3>Plan Your Routine</h3>
+            <div class="routine-fields">
+                <input type="text" id="routineActivity" placeholder="Activity (e.g. Basketball Drills)">
+                <input type="time" id="routineTime" value="15:00">
+                <button id="saveRoutine" class="routine-btn">Add to My Routine</button>
+            </div>
+        </div>
     </main>
 
     <footer>
@@ -86,9 +95,23 @@
             '7-22': [{ title: 'Soccer Practice', time: '3:00 PM' }],
         };
 
+        let userRoutines = JSON.parse(localStorage.getItem('palRoutines') || '{}');
+
+        function saveRoutines() {
+            localStorage.setItem('palRoutines', JSON.stringify(userRoutines));
+        }
+
         let currentDate = new Date();
         let currentMonth = currentDate.getMonth();
         let currentYear = currentDate.getFullYear();
+        let selectedKey = null;
+
+        function getAllKeys() {
+            const keys = new Set();
+            Object.keys(events).forEach(k => keys.add(k));
+            Object.keys(userRoutines).forEach(k => keys.add(k));
+            return keys;
+        }
 
         function renderCalendar() {
             const monthYear = document.getElementById('monthYear');
@@ -116,10 +139,10 @@
                 dayDiv.textContent = d;
 
                 const key = (currentMonth + 1) + '-' + d;
-                if (events[key]) {
+                if (getAllKeys().has(key)) {
                     dayDiv.classList.add('has-event');
-                    dayDiv.addEventListener('click', () => showEvents(key, d));
                 }
+                dayDiv.addEventListener('click', () => showEvents(key, d));
 
                 const today = new Date();
                 if (d === today.getDate() && currentMonth === today.getMonth() && currentYear === today.getFullYear()) {
@@ -131,7 +154,9 @@
         }
 
         function showEvents(key, day) {
+            selectedKey = key;
             const panel = document.getElementById('eventPanel');
+            const form = document.getElementById('routineForm');
             const title = document.getElementById('eventDateTitle');
             const list = document.getElementById('eventList');
 
@@ -142,36 +167,78 @@
             title.textContent = monthNames[currentMonth] + ' ' + day + ', ' + currentYear;
             list.innerHTML = '';
 
-            const dayEvents = events[key] || [];
-            if (dayEvents.length === 0) {
+            const pal = events[key] || [];
+            const user = userRoutines[key] || [];
+            const all = [...pal, ...user];
+
+            if (all.length === 0) {
                 const li = document.createElement('li');
                 li.textContent = 'No events scheduled.';
                 list.appendChild(li);
             } else {
-                dayEvents.forEach(ev => {
+                all.forEach(ev => {
                     const li = document.createElement('li');
                     const timeStr = ev.time ? ' &mdash; ' + ev.time : '';
-                    li.innerHTML = '<span class="event-title">' + ev.title + '</span>' + timeStr;
+                    if (ev.isUser) {
+                        li.className = 'user-routine-item';
+                        li.innerHTML = '<span class="event-title">' + ev.title + '</span>' + timeStr;
+                        const del = document.createElement('button');
+                        del.className = 'delete-routine';
+                        del.textContent = '×';
+                        del.title = 'Remove from my routine';
+                        del.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            userRoutines[key] = userRoutines[key].filter(r => r.title !== ev.title || r.time !== ev.time);
+                            if (userRoutines[key].length === 0) delete userRoutines[key];
+                            saveRoutines();
+                            showEvents(key, day);
+                            renderCalendar();
+                        });
+                        li.appendChild(del);
+                    } else {
+                        li.innerHTML = '<span class="event-title">' + ev.title + '</span>' + timeStr;
+                    }
                     list.appendChild(li);
                 });
             }
 
             panel.classList.remove('hidden');
+            form.classList.remove('hidden');
+            document.getElementById('routineActivity').value = '';
         }
+
+        document.getElementById('saveRoutine').addEventListener('click', () => {
+            if (!selectedKey) return;
+            const activity = document.getElementById('routineActivity').value.trim();
+            const time = document.getElementById('routineTime').value;
+            if (!activity) return;
+
+            const timeFormatted = time
+                ? new Date('2000-01-01T' + time).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })
+                : '';
+
+            if (!userRoutines[selectedKey]) userRoutines[selectedKey] = [];
+            userRoutines[selectedKey].push({ title: activity, time: timeFormatted, isUser: true });
+            saveRoutines();
+            renderCalendar();
+
+            const day = parseInt(selectedKey.split('-')[1]);
+            showEvents(selectedKey, day);
+        });
 
         document.getElementById('prevMonth').addEventListener('click', () => {
             currentMonth--;
-            if (currentMonth < 0) { currentMonth = 11;
-                currentYear--; }
+            if (currentMonth < 0) { currentMonth = 11; currentYear--; }
             document.getElementById('eventPanel').classList.add('hidden');
+            document.getElementById('routineForm').classList.add('hidden');
             renderCalendar();
         });
 
         document.getElementById('nextMonth').addEventListener('click', () => {
             currentMonth++;
-            if (currentMonth > 11) { currentMonth = 0;
-                currentYear++; }
+            if (currentMonth > 11) { currentMonth = 0; currentYear++; }
             document.getElementById('eventPanel').classList.add('hidden');
+            document.getElementById('routineForm').classList.add('hidden');
             renderCalendar();
         });
 
