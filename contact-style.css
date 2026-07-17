@@ -25,3 +25,42 @@
     font-weight: 700;
     color: rgb(196, 35, 35);
 }
+/* Logo image */
+.logo img {
+    max-width: 180px;                  /* bigger logo */
+    height: auto;
+    border-radius: 12px;
+    transition: transform 0.25s ease,
+                box-shadow 0.25s ease;
+}
+
+
+/* Instagram & Facebook screenshots */
+.social-screenshot {
+    text-align: center;
+    margin-top: 1.5rem;
+    overflow: hidden;      
+    color: rgb(196, 35, 35);            /* keeps zoom inside rounded corners */
+}
+/* Social screenshot headings */
+.social-screenshot h2 {
+    color: rgb(196, 35, 35);              /* or use a custom red like #e53935 */
+    margin-bottom: 0.5rem;
+    font-family: 'Zalando Sans Expanded', sans-serif;
+
+}
+.social-screenshot img {
+    max-width: 500px;                  /* bigger screenshots */
+    height: auto;
+    border-radius: 12px;
+    transition: transform 0.25s ease,
+                box-shadow 0.25s ease;
+}
+
+/* Hover effect: slight zoom + black shadow */
+.logo img:hover,
+.socials-img:hover,
+.social-screenshot img:hover {
+    transform: scale(1.05);                         /* zoom amount unchanged */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);     /* dark shadow on hover */
+}
