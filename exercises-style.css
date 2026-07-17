@@ -1,0 +1,144 @@
+/* Main layout */
+.exercises-main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem 1rem 3rem;
+    background: linear-gradient(
+        135deg,
+        #ffffff 0%,      /* white in one corner */
+        #ff3b3b 35%,     /* bright red band */
+        #000000 100%     /* deep black fade */
+    );
+    border-radius: 18px;
+}
+
+/* Heading + intro */
+.exercises-main h1 {
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.exercises-intro {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* Sections */
+.muscle-group {
+    margin-bottom: 3rem;
+}
+
+/* Color accents by group (optional) */
+.chest-group h2 {
+    color: #d32f2f;
+}
+
+.back-group h2 {
+    color: #1976d2;
+}
+
+.shoulders-group h2 {
+    color: #f57c00;
+}
+
+.triceps-group h2 {
+    color: #7b1fa2;
+}
+
+.muscle-group h2 {
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Grid layout */
+.exercise-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Card base */
+.exercise-card {
+    background: #ffffff;
+    border: 2px solid rgba(0, 0, 0, 0.08);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    transition: transform 0.25s ease,
+                box-shadow 0.25s ease,
+                border-color 0.25s ease;
+    cursor: pointer;
+    position: relative;
+}
+
+/* Image wrapper */
+.exercise-image {
+    width: 425px;
+    height: 240px;
+    overflow: hidden;
+    margin: 0 auto; /* center inside the card */
+}
+
+/* Images: fill the 425x240 box, cropped nicely */
+.exercise-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;            /* keeps aspect ratio, crops overflow */
+    display: block;
+    border-radius: 16px 16px 0 0;
+    transition: transform 0.25s ease;
+}
+
+/* Text content */
+.exercise-content {
+    padding: 0.9rem 1rem 1.2rem;
+}
+
+.exercise-content h3 {
+    margin-bottom: 0.4rem;
+    font-size: 1.05rem;
+}
+
+.exercise-content p {
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+/* Hover effects: lift, zoom, darker shadow, border highlight */
+.exercise-card:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 14px 26px rgba(0, 0, 0, 0.25);
+    border-color: #000000;
+}
+
+.exercise-card:hover .exercise-image img {
+    transform: scale(1.06);
+}
+
+/* Optional subtle glow on hover */
+.exercise-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    transition: box-shadow 0.25s ease;
+    pointer-events: none;
+}
+
+.exercise-card:hover::before {
+    box-shadow: 0 0 24px rgba(0, 0, 0, 0.25);
+}
+
+/* Mobile tweaks */
+@media (max-width: 600px) {
+    .exercises-main {
+        padding: 1.5rem 0.75rem 2.5rem;
+        border-radius: 0;
+    }
+
+    .exercise-content {
+        padding: 0.75rem 0.9rem 1.05rem;
+    }
+}
